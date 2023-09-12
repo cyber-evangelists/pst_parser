@@ -1,0 +1,6 @@
+version: '3'
+services:
+  myapp:
+    image: my-python-app:latest
+    volumes:
+      - target_files:/app/target_files
