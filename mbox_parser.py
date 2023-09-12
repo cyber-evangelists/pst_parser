@@ -1,7 +1,8 @@
 import mailbox
 import email.utils
 import os
-
+from db_manager import create_db, store_data
+create_db()
 
 def parse_mbox_file(mbox_file):
     data = []
@@ -33,17 +34,18 @@ def parse_mbox_file(mbox_file):
 
                 with open(attachment_path, 'wb') as file:
                     file.write(attachment_data)
-
-            data.append({
+            email_data = {
                 'subject': subject,
                 'sender_name': sender_name,
-                'seder_email': sender_email,
+                'sender_email': sender_email,
                 'receiver_name': receiver_name,
-                'receiver_email,': receiver_email,
-                'date': date,
-                'attachment name': attachment_name,
-                'content type': content_type
-            })
+                'receiver_email': receiver_email,
+                'attachment_name': attachment_name,
+                'content_type': content_type,
+                'datetime': date,
+            }
+            data.append(email_data)
+            store_data(email_data)
     return data
             
            

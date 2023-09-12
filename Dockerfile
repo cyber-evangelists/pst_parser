@@ -1,6 +1,9 @@
 # Use an official Ubuntu image as a parent image
 FROM ubuntu:20.04
 
+# Set DEBIAN_FRONTEND to noninteractive to prevent prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -9,9 +12,8 @@ RUN apt-get update && apt-get install -y python3
 
 # Copy the current directory contents into the container at /app
 
-COPY main.py mbox_parser.py requirements.txt /app/
-
-RUN mkdir /app/target_files
+COPY . .
+RUN mkdir /app/output
 
 # Install any needed Python packages specified in requirements.txt for your Python application
 RUN apt-get install -y python3-pip && pip3 install -r requirements.txt

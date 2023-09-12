@@ -1,6 +1,8 @@
 version: '3'
 services:
   myapp:
-    image: my-python-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - target_files:/app/target_files
+      - .:/app
