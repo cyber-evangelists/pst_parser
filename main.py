@@ -26,7 +26,8 @@ def pst_to_mbox(target_dir, mbox_dir):
     for root, _, files in os.walk(target_dir):
         for file in files:
             if file.endswith(".pst") or file.endswith(".ost"):
-                command = ["readpst", "-D", "-b", "-o", f"./{mbox_dir}", f"{file}"]
+                print(file)
+                command = ["readpst", "-D", "-b", "-o", f"./{mbox_dir}", f"./{target_dir}/{file}"]
                 subprocess.run(command, check=True)
 
 
